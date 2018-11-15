@@ -4,6 +4,7 @@
 #include "boolean.h"
 
 #define Fail -99999
+#define MathError -99998
 char *now;
 
 // List perintah
@@ -15,6 +16,8 @@ float digit();
 float plusminus();
 float timesdiv();
 float brackets();
+float power();
+float executePower(float x);
 
 // Implementasi perintah-perintah
 
@@ -77,7 +80,7 @@ float digit ()
       temp = (temp*10) + charTofloat(*now);
       now++;
     }
-    if (*now >= '.')
+    if (*now == '.')
     {
       now++;
       float multiplier = 0.1;
@@ -139,7 +142,7 @@ float plusminus ()
 float timesdiv ()
 // Menghasilkan hasil perkalian dan pembagian
 {
-  float x = checksign();
+  float x = power();
   if (FailedInput(x))
   {
     return (Fail);
@@ -148,7 +151,7 @@ float timesdiv ()
   {
     char opr = *now;
     now++;
-    float y = checksign();
+    float y = power();
     if (FailedInput(y))
     {
       return (Fail);
@@ -177,6 +180,45 @@ float brackets ()
   {
     now++;
     return res;
+  }
+}
+
+float power ()
+// Mengembalikan hasil perpangkatan dari sebuah bilangan
+{
+  float x = checksign();
+  if (*now == '^' && x != Fail)
+  {
+    now++;
+    x = executePower(x);
+  }
+  return (x);
+}
+
+float executePower (float x)
+// Membantu perpangkatan dengan pemanggilan rekursif
+{
+  float y = checksign();
+  if (y == Fail)          // Basis
+  {
+    return (Fail);
+  }
+  else if (*now != '^')   // Basis
+  {
+    return (pow(x,y));
+  }
+  else                    // Rekurens
+  {
+    now++;
+    float z = executePower(y);
+    if (z != Fail)
+    {
+      return (pow(x,z));
+    }
+    else
+    {
+      return (Fail);
+    }
   }
 }
 
