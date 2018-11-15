@@ -14,6 +14,7 @@ float checksign();
 float digit();
 float plusminus();
 float timesdiv();
+float brackets();
 
 // Implementasi perintah-perintah
 
@@ -36,7 +37,8 @@ boolean FailedInput(float x)
 }
 
 float checksign()
-// Mengecek apakah digit tersebut memiliki nilai negatif atau tidak
+// Mengecek apakah digit tersebut memiliki nilai negatif, tanda kurung
+// atau hanya bilangan biasa saja
 {
   float checker;
 
@@ -52,6 +54,11 @@ float checksign()
     {
       return (Fail);
     }
+  }
+  else if (*now == '(')
+  {
+    now++;
+    return (brackets());
   }
   else
   {
@@ -156,6 +163,21 @@ float timesdiv ()
     }
   }
   return x;
+}
+
+float brackets ()
+// Menghasilkan hasil dari tanda kurung jika berhasil
+{
+  float res = plusminus();
+  if (*now != ')')
+  {
+    return Fail;
+  }
+  else
+  {
+    now++;
+    return res;
+  }
 }
 
 int main ()
