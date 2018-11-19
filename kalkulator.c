@@ -117,25 +117,30 @@ float plusminus ()
   }
   else
   {
-    while (*now == '+' || *now == '-')
-    {
-      char opr = *now;
-      now++;
-      float y = timesdiv();
-      if (FailedInput(y))
-      {
-        return (Fail);
-      }
-      if (opr == '+')
-      {
-        x += y;
-      }
-      else
-      {
-        x -= y;
-      }
+    if ((*now == '+' && *(now+1) == '-')){
+      return(Fail);
     }
-    return x;
+    else{
+      while (*now == '+' || *now == '-')
+      {
+        char opr = *now;
+        now++;
+        float y = timesdiv();
+        if (FailedInput(y))
+        {
+          return (Fail);
+        }
+        if (opr == '+')
+        {
+          x += y;
+        }
+        else
+        {
+          x -= y;
+        }
+      }
+      return x;
+    }
   }
 }
 
@@ -205,7 +210,13 @@ float executePower (float x)
   }
   else if (*now != '^')   // Basis
   {
-    return (pow(x,y));
+    float a=pow(x,y);
+    if (isnan(a)){
+      return (Fail);
+    }
+    else{
+      return (a);
+    }
   }
   else                    // Rekurens
   {
@@ -213,7 +224,13 @@ float executePower (float x)
     float z = executePower(y);
     if (z != Fail)
     {
-      return (pow(x,z));
+      float b=pow(x,z);
+      if (isnan(b)){
+        return (Fail);
+      }
+      else{
+        return (b);
+      }
     }
     else
     {
