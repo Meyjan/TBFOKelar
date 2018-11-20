@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+//KAMUS
+    char CC;
 
 int main(){
     printf(" __    __            __  __                  __              __                         \n");
@@ -23,9 +25,16 @@ int main(){
     printf("Perpangkatan >> 2^3 \n");
     printf("Perkurungan >> 2*(3+2) \n");
 
-    
+    utama();
+    printf("\nMau hitung lagi? (Y/N)\n");
+    scanf("%s", &CC);
+    while ((CC != 'N') && (CC != 'n')){
+        utama();
+        printf("\nMau hitung lagi? (Y/N)\n");
+        scanf("%s", &CC);
+    }
 
-    printf("- C O N T R I B U T O R S -\n");
+    printf("\n- C O N T R I B U T O R S -\n");
     printf("1. T. Andra Oksidian Tafly / 13517020\n");
     printf("2. Andrian Cedric / 13517065\n");
     printf("3. Jan Meyer Saragih / 13517131\n");
@@ -33,3 +42,4 @@ int main(){
 
     return 0;                                                                                    
 }
+
