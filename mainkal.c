@@ -1,4 +1,4 @@
-
+#include "kalkulator.c"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -23,6 +23,8 @@ int main(){
     printf("Perpangkatan >> 2^3 \n");
     printf("Perkurungan >> 2*(3+2) \n");
 
+    
+
     printf("- C O N T R I B U T O R S -\n");
     printf("1. T. Andra Oksidian Tafly / 13517020\n");
     printf("2. Andrian Cedric / 13517065\n");
@@ -31,4 +33,3 @@ int main(){
 
     return 0;                                                                                    
 }
-
