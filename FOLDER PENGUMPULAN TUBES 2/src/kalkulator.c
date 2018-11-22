@@ -251,13 +251,19 @@ float executePower (float x)
   }
   else if (*now != '^')   // Basis
   {
-    float a=pow(x,y);
-    if (isnan(a)){
+    if (x==0 && y<=0){
       matherror = true;
       return (Fail);
     }
     else{
-      return (a);
+      float a=pow(x,y);
+      if (isnan(a)){
+        matherror = true;
+        return (Fail);
+      }
+      else{
+        return (a);
+      }
     }
   }
   else                    // Rekurens
@@ -266,13 +272,19 @@ float executePower (float x)
     float z = executePower(y);
     if (!FailedInput())
     {
-      float b=pow(x,z);
-      if (isnan(b)){
+      if (x==0 && y<=0){
         matherror = true;
         return (Fail);
       }
       else{
-        return (b);
+        float b=pow(x,z);
+        if (isnan(b)){
+          matherror = true;
+          return (Fail);
+        }
+        else{
+          return (b);
+        }
       }
     }
     else

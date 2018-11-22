@@ -40,6 +40,7 @@ boolean IsPower (char X)
   // ALGORITMA
   return (X == '^');
 }
+<<<<<<< Updated upstream
 boolean IsBukaKurung (char X)
 // Mengecek apakah karakter tersebut '('
 {
@@ -176,4 +177,3 @@ int main ()
       printf("SINTAKS ERROR");
 
   return 0;
-}
